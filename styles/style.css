@@ -1,14 +1,25 @@
-:root {
-    --r-b0: 1em;
-    --p-b0: .5em;
-}
+@import url(./fonts.css);
 
 * {
     margin: 0;
     padding: 0;
     border: none;
     background: none;
+    text-decoration: none;
 }
+
+:root {
+    --r-b0: 1em;
+    --p-b0: .5em;
+    font-family: "roboto", sans-serif;
+    color: var(--c-g0-c0);
+}
+
+body {
+    background-color: var(--c-g0);
+}
+
+/* Icon related */
 
 .icon {
     fill: none;
@@ -18,23 +29,130 @@
     stroke-linejoin: round;
 }
 
-button {
-    font-size: 1em;
+/* Box related */
+
+.box {
+    border: 1px solid var(--c-g1-c0);
+}
+
+.r {
+    border-radius: 1em;
+}
+
+.masked {
+    display: none;
+}
+
+[is=mask-box] {
+    overflow: hidden;
+}
+
+[is=mask-box] > *{
+    position: relative;
+}
+
+.mask > * {
+    z-index: -1;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Surfaces related */
+
+.grid, .cross, .hash, .dot {
+    background-size: 1em;
+}
+
+.grid {
+    background-image: url(/assets/surfaces/grid.svg);
+}
+
+.cross {
+    background-image: url(/assets/surfaces/cross.svg);
+}
+
+.hash {
+    background-image: url(/assets/surfaces/hash.svg);
+}
+
+.dot {
+    background-image: url(/assets/surfaces/dot.svg);
+}
+
+/* Text related */
+
+.monoton {
+    font-family: 'monoton', sans-serif;
+    font-weight: 100;
+    word-spacing: .5ch;
+}
+
+.pixelify {
+    font-family: 'pixelify', sans-serif;
+    font-weight: 100;
+    word-spacing: .5ch;
+}
+
+h1::first-letter, h2, h3 {
+    text-transform: capitalize;
+}
+
+h1 {
+    font-size: 6em;
+}
+
+h2 {
+    font-size: 4em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+a::after {
+    position: absolute;
+    content: '';
+    background-color: var(--c-a0);
+    width: 100%;
+    height: .05em;
+    bottom: 0;
+    left: 0;
+    transition: width .2s ease-in-out;
+}
+
+.right a::after, a.right::after {
+    left:auto;
+    right: 0;
+}
+
+a:hover::after {
+    width: 50%;
+}
+
+a {
+    position: relative;
+    width: fit-content;
+    color: var(--c-a0);
 }
 
 /* Animated text */
 
-[is="anim-text"] {
+[is=anim-text] {
     display: inline-block;
+    flex-direction: row;
+    /* justify-content:flex-start; */
+    align-items:end;
 }
 
-[is="anim-text"] span {
+[is=anim-text] span {
     display: inline-block;
     transition: all .1s ease-in-out;
     width: 1ch;
+    max-height: 1em;
 }
 
-@keyframes flip {
+@keyframes fliping {
     100% {
         transform: rotateY(-360deg);
     }
@@ -69,6 +187,12 @@ header path {
     stroke: rgb(0, 0, 0);
 }
 
+.menu-icon {
+    stroke-linejoin: round;
+    stroke-width: .8;
+    stroke-linecap: round;
+}
+
 /* Canvas Related */
 
 canvas {
@@ -83,55 +207,38 @@ canvas {
 main {
     min-height: 100vh;
     max-width: 80em;
-    padding: 1em;
+    padding: 0 2em;
     margin: auto;
-    background-color: rgb(223, 225, 226);
-}
-
-window-project {
-    display: block;
-    width: fit-content;
-    border-radius: var(--r-b0);
-    border: 1px solid var(--c-g0);
-    overflow: hidden;
-}
-
-window-project .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--c-g0);
-}
-
-window-project .topbar svg {
-    height: 1em;
-}
-
-window-project div:has(>svg) {
-    display: flex;
-    gap: .5em;
-}
-
-window-project > * {
-    padding: var(--p-b0);
+    background-color: var(--c-g1);
+    border-left: 1px solid var(--c-g1-c0);
+    border-right: 1px solid var(--c-g1-c0);
 }
 
 /* Footer related */
 
 footer {
+    margin-top: auto;
     width: 100%;
     height: 4em;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid #000;
 }
 
 footer > * {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     margin: .5em;
 }
 
-footer > *:nth-child(n + 2) {
-    border-left: 1px solid var(--c-g0);
+/* footer > *:nth-child(n + 2) {
+    border-left: 1px solid var(--c-g1-c0);
     padding-left: 1em;
+} */
+
+footer address {
+    display: flex;
+    align-items: end;
 }

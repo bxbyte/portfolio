@@ -1,4 +1,4 @@
-const CURSED_CHARSET = ['⬚', '$', '/', '﹏', '﹍', 'A', 'Z', '▒', '▓', '░', '⠻', '⛦'];
+const CURSED_CHARSET = ['⬚', '$', '/', '﹏', '﹍', 'A', 'Z', '▒', '░', '⠻', '⛦'];
 
 function toSpanEl(text) {
     let spanEl = document.createElement("span");
@@ -22,7 +22,7 @@ async function waitNext(callback, node, deltatime) {
     })
 }
 
-class AnimatedText extends HTMLParagraphElement {
+class AnimatedText extends HTMLSpanElement {
 
     async connectedCallback() {
         this.replaceChildren(...(this.chars = [...this.innerText].map(toSpanEl)));
@@ -48,7 +48,6 @@ class AnimatedText extends HTMLParagraphElement {
                 remainingChars = Array.from(CURSED_CHARSET),
                 idInterval = setInterval(() => {
                     if (remainingChars.length == 0 || Math.random() < 1 / remainingChars.length ) {
-                        console.log(finalChar)
                         charEl.innerText = finalChar;
                         clearInterval(idInterval);
                         return;
@@ -60,4 +59,4 @@ class AnimatedText extends HTMLParagraphElement {
     }
 }
 
-customElements.define("anim-text", AnimatedText, {extends: 'p'})
+customElements.define("anim-text", AnimatedText, {extends: 'span'})

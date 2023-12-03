@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "monoton";
+    src: url(/assets/fonts/monoton.ttf);
+}
+
+@font-face {
+    font-family: "roboto";
+    src: url(/assets/fonts/roboto.ttf);
+}
+
+@font-face {
+    font-family: "pixelify";
+    src: url(/assets/fonts/pixelify.ttf);
+}
