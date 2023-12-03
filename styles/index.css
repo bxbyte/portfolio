@@ -1,0 +1,110 @@
+/* Welcome section */
+
+#welcome {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1em;
+    height: 100vh;
+}
+
+#welcome h1 {
+    grid-area: 1 / 1 / 3 / 5; 
+    background-color: red;
+    font-size: 8em;
+    margin-top: auto;
+    text-align: right;
+}
+
+#welcome .big {
+    background-color: green;
+    grid-area: 2 / 5 / 5 / 8; 
+}
+
+#welcome h2 {
+    grid-area: 3 / 2 / 4 / 3;
+    text-align: right;
+}
+
+#welcome p {
+    grid-area: 3 / 3 / 6 / 5;
+    text-align: right;
+}
+
+#welcome .more {
+    grid-area: 5 / 5 / 6 / 6; 
+    background-color: red;
+    height: fit-content;
+}
+
+/* Certification section */
+
+#certifications {
+    min-height: 100vh;
+}
+
+#certifications > h1 {
+    font-size: 3em;
+}
+
+#certifications > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#certifications > ul > li {
+    display: grid;
+    grid-template-columns: 1fr 1.5em;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-rows: 1.5em 1.5em 1fr;
+    /* grid-template-rows: repeat(3, 1fr); */
+    list-style: none;
+    border: .1em solid var(--c-g0);
+    border-radius: var(--r-b0);
+    width: fit-content;
+    padding: var(--p-b0);
+}
+
+#certifications ul > h1 {
+    grid-area: 1 / 1 / 2 / 2; 
+}
+
+#certifications li > ul {
+    grid-area: 3 / 1 / 4 / 3; 
+    list-style: circle;
+    padding-left: 1em;
+}
+
+#certifications svg {
+    margin-left: auto;
+    grid-area: 1 / 2 / 2 / 3;
+    height: 1.5em;
+    stroke-width: .1em;
+}
+
+#certifications time {
+    grid-area: 2 / 1 / 3 / 3; 
+    font-style: italic;
+    margin: auto 0;
+}
+
+/* Projects section */
+
+#projects {
+    min-height: 100vh;
+}
+
+/* Aside related */
+
+aside {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    display: flex;
+}
+
+aside > * {
+}
