@@ -65,19 +65,19 @@ body {
 }
 
 .grid {
-    background-image: url(/assets/surfaces/grid.svg);
+    background-image: url(../assets/surfaces/grid.svg);
 }
 
 .cross {
-    background-image: url(/assets/surfaces/cross.svg);
+    background-image: url(../assets/surfaces/cross.svg);
 }
 
 .hash {
-    background-image: url(/assets/surfaces/hash.svg);
+    background-image: url(../assets/surfaces/hash.svg);
 }
 
 .dot {
-    background-image: url(/assets/surfaces/dot.svg);
+    background-image: url(../assets/surfaces/dot.svg);
 }
 
 /* Text related */

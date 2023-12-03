@@ -47,7 +47,7 @@ main {
 #windows .img {
     background-position: center;
     background-size: cover;
-    background-image: url(/assets/img/mountain-0.png);
+    background-image: url(../assets/img/mountain-0.png);
 }
 
 #windows .pattern {
