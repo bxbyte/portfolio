@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="/styles/template.css">
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/light-theme.css">
-    <link rel="alternate stylesheet" href="/styles/dark-theme.css">
+    <link rel="stylesheet" href="../styles/template.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/light-theme.css">
+    <link rel="alternate stylesheet" href="../styles/dark-theme.css">
 
-    <script src="/scripts/main.mjs" type="module"></script>
+    <script src="../scripts/main.mjs" type="module"></script>
 
     <title>Portfolio - Template</title>
     <!-- Svg icon elements -->
@@ -75,46 +75,46 @@
         </section>
         <section id="windows">
             <div class="masked">
-                <div class="img-1"></div>
-                <div class="pattern dot"></div>
-                <div class="img-0"></div>
+                <div class="img"></div>
             </div>
             <div is="mask-box" class="r">
+                <div class="mask">
+                    <div class="pattern hash"></div>
+                </div>
                 <div class="content">
                     <h3>Box 1</h3>
                 </div>
             </div>
             <div is="mask-box" class="r">
+                <div class="mask">
+                    <div class="dot"></div>
+                </div>
                 <div class="content">
                     <h3>Box 2</h3>
                 </div>
+                <svg xmlns="http://www.w3.org/2000/svg">
+                    <mask id="test">
+                        <text x="0" y="150" font-size="12em" fill="white">Hello</text>
+                    </mask>
+                </svg>
             </div>
             <div is="mask-box" class="r">
+                <div class="mask">
+                    <div class="pattern hash"></div>
+                </div>
                 <div class="content">
                     <h3>Box 3</h3>
                 </div>
             </div>
             <div is="mask-box" class="r">
+                <div class="mask">
+                    <div class="pattern hash"></div>
+                </div>
                 <div class="content">
                     <h3>Box 4</h3>
                 </div>
             </div>
-            <div is="mask-box" class="r">
-                <div class="content">
-                    <h3>Box 5</h3>
-                </div>
-            </div>
-            <div is="mask-box" class="r">
-                <div class="content">
-                    <h3>Box 6</h3>
-                </div>
-            </div>
-            <div is="mask-box" class="r">
-                <div class="content">
-                    <h3>Box 7</h3>
-                </div>
-            </div>
-            <div class="r hash"></div>
+            <div is="mask-box" class="r"></div>
         </section>
         <footer>
             <div>
