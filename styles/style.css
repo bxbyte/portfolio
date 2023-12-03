@@ -60,7 +60,7 @@ body {
 
 /* Surfaces related */
 
-.grid, .cross, .hash, .dot {
+.grid, .cross, .hash-lt, .hash-rb, .dot {
     background-size: 1em;
 }
 
@@ -72,8 +72,12 @@ body {
     background-image: url(../assets/surfaces/cross.svg);
 }
 
-.hash {
-    background-image: url(../assets/surfaces/hash.svg);
+.hash-lt {
+    background-image: url(../assets/surfaces/hash-lt.svg);
+}
+
+.hash-rb {
+    background-image: url(../assets/surfaces/hash-rb.svg);
 }
 
 .dot {
@@ -88,7 +92,7 @@ body {
     word-spacing: .5ch;
 }
 
-.pixelify {
+.pixel {
     font-family: 'pixelify', sans-serif;
     font-weight: 100;
     word-spacing: .5ch;

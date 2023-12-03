@@ -65,12 +65,10 @@ main {
 
 #windows > div:nth-child(4) {
     grid-area: 2 / 5 / 4 / 7;
-    text-align: right;
 }
 
 #windows > div:nth-child(5) {
     grid-area: 2 / 3 / 4 / 5;
-    text-align: center;
 }
 
 #windows > div:nth-child(6) {
