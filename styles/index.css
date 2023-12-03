@@ -14,6 +14,7 @@
     font-size: 8em;
     margin-top: auto;
     text-align: right;
+    transform: matrix(1.00,0.20,0.20,1.00,0,0);
 }
 
 #welcome .big {
