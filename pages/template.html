@@ -13,22 +13,6 @@
     <script src="../scripts/main.mjs" type="module"></script>
 
     <title>Portfolio - Template</title>
-    <!-- Svg icon elements -->
-    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display: none;" >
-        <symbol id="icon/info">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 16v-4"/><path d="M12 8h.01"/>
-        </symbol>
-        <symbol id="icon/close">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="m15 9-6 6"/>
-            <path d="m9 9 6 6"/>
-        </symbol>
-        <symbol id="icon/grad">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-        </symbol>
-    </svg>
 </head>
 <body>
     <canvas is="background-canvas"></canvas>
@@ -53,11 +37,18 @@
             <a class="more">link</a>
         </section>
         <section id="surfaces">
-            <div class="grid"></div>
-            <div class="cross"></div>
-            <div class="hash-lt"></div>
-            <div class="hash-rb"></div>
-            <div class="dot"></div>
+            <svg class="surface">
+                <rect fill="url(../assets/surfaces.svg#grid)"/>
+            </svg>
+            <svg class="surface">
+                <rect fill="url(../assets/surfaces.svg#cross)"/>
+            </svg>
+            <svg class="surface">
+                <rect fill="url(../assets/surfaces.svg#hash)"/>
+            </svg>
+            <svg class="surface">
+                <rect fill="url(../assets/surfaces.svg#dot)"/>
+            </svg>
         </section>
         <section id="boxes">
             <div class="box"></div>
@@ -65,57 +56,44 @@
         </section>
         <section id="icons">
             <svg class="icon" viewBox="0 0 24 24">
-                <use href="#icon/info"/>
+                <use href="../assets/icons.svg#info"/>
             </svg>
             <svg class="icon" viewBox="0 0 24 24">
-                <use href="#icon/close"/>
+                <use href="../assets/icons.svg#close"/>
             </svg>
             <svg class="icon" viewBox="0 0 24 24">
-                <use href="#icon/grad"/>
+                <use href="../assets/icons.svg#grad"/>
             </svg>
         </section>
         <section id="windows">
-            <div class="masked">
-                <div class="img"></div>
+            <div is="masked-box" id="mask-windows">
+                <svg class="surface">
+                    <rect width="100%" fill="url(../assets/surfaces.svg#hash)"/>
+                    <image href="../assets/img/mountain-0.png"
+                        x="0" y="0" width="100%" height="100%"
+                        preserveAspectRatio="xMidYMin slice"/>
+                </svg>
             </div>
-            <div is="mask-box" class="r">
-                <div class="mask">
-                    <div class="pattern hash-lt"></div>
-                </div>
+            <div mask="#mask-windows" class="r">
             </div>
-            <div is="mask-box" class="r">
-                <div class="mask">
-                    <div class="hash-lt"></div>
-                </div>
+            <div mask="#mask-windows" class="r">
                 <div class="content">
                     <h1 class="monoton">Box 2</h1>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg">
-                    <mask id="test">
-                        <text x="0" y="150" font-size="12em" fill="white">Hello</text>
-                    </mask>
-                </svg>
             </div>
-            <div is="mask-box" class="r">
-                <div class="mask">
-                    <div class="pattern hash-lt"></div>
-                </div>
+            <div mask="#mask-windows" class="r">
             </div>
-            <div is="mask-box" class="r">
-                <div class="mask">
-                    <div class="pattern hash-lt"></div>
-                </div>
+            <div mask="#mask-windows" class="r">
             </div>
-            <div is="mask-box" class="r"></div>
+            <div mask="#mask-windows" class="r"></div>
         </section>
         <footer>
             <div>
-                <a href="" rel="license">© 2023, Privacy Policy</a>
                 <a href="/LICENSE.txt" rel="license">Terms of Use.</a>
+                <a href="" rel="license">© 2023, Privacy Policy.</a>
             </div>
             <address class="right">
                 <a href="mailto:lucas.maillet.pro@gmail.com">lucas.maillet.pro@gmail.com</a>
-                <a href="tel:+330668107604">+33 06.68.10.76.04</a>
             </address>
         </footer>
     </main>

@@ -18,32 +18,22 @@ main {
     gap: 1em;
 }
 
-#surfaces div, 
-#boxes div {
+#surfaces > *, 
+#boxes > * {
     width: 10em;
     height: 10em;
 }
 
 #windows {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 10em;
     gap: .5em;
-    position: relative;
 }
 
 #windows .content {
     padding: 1em;
-}
-
-#windows .img {
-    background-position: center;
-    background-size: cover;
-    background-image: url(../assets/img/mountain-0.png);
-}
-
-#windows .pattern {
-    z-index: -1;
 }
 
 #windows > div:nth-child(2) {
@@ -52,6 +42,9 @@ main {
 
 #windows > div:nth-child(3) {
     grid-area: 1 / 3 / 2 / 7;
+}
+
+#windows > div:nth-child(3) h1 {
     text-align: right;
 }
 

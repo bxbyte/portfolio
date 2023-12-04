@@ -1,28 +1,32 @@
 
-class MaskDiv extends HTMLDivElement {
+class MaskedDiv extends HTMLDivElement {
 
     async connectedCallback() {
-        let maskedTargetEl = this.parentElement.querySelector(".masked"),
-            maskEl = this.querySelector(".mask");
+        this.masks = Array.from(document.querySelectorAll(`[mask="#${this.id}"]`)).map(
+            el => {
+                let maskEl = el.querySelector(".mask");
+                if (!maskEl) {
+                    maskEl = document.createElement("div");
+                    maskEl.classList.add("mask")
+                    el.insertBefore(maskEl, el.firstChild);
+                }
+                this.childNodes.forEach(child => maskEl.appendChild(child.cloneNode(true)));
+                return maskEl;
+            }
+        );
 
-        if (!maskEl) {
-            maskEl = document.createElement("div");
-            maskEl.classList.add("mask")
-            this.insertBefore(maskEl, this.firstChild);
-        }
+        window.addEventListener("resize", this.mooveMasks.bind(this));
+        this.mooveMasks();
+    }
 
-        window.addEventListener("resize", () => {
+    mooveMasks() {
+        this.masks.forEach(maskEl => {
             let parentBox = this.parentElement.getBoundingClientRect(),
-                box = this.getBoundingClientRect();
+                box = maskEl.parentElement.getBoundingClientRect();
+                console.log(`translate(${parentBox.x - box.x}px, ${parentBox.y - box.y}px)`)
             maskEl.style.transform = `translate(${parentBox.x - box.x}px, ${parentBox.y - box.y}px)`;
         })
-        
-        let parentBox = this.parentElement.getBoundingClientRect(),
-            box = this.getBoundingClientRect();
-        maskEl.style.transform = `translate(${parentBox.x - box.x}px, ${parentBox.y - box.y}px)`;
-
-        maskedTargetEl.childNodes.forEach(child => maskEl.appendChild(child.cloneNode(true)));
     }
 }
 
-customElements.define("mask-box", MaskDiv, { extends: 'div' });
+customElements.define("masked-box", MaskedDiv, { extends: 'div' });
