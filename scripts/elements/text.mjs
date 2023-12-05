@@ -47,12 +47,12 @@ class AnimatedText extends HTMLSpanElement {
             let finalChar = charEl.innerText,
                 remainingChars = Array.from(CURSED_CHARSET),
                 idInterval = setInterval(() => {
+                    charEl.innerText = remainingChars.splice(~~(Math.random() * remainingChars.length), 1)[0];
                     if (remainingChars.length == 0 || Math.random() < 1 / remainingChars.length ) {
                         charEl.innerText = finalChar;
                         clearInterval(idInterval);
-                        return;
+                        res();
                     }
-                    charEl.innerText = remainingChars.splice(~~(Math.random() * remainingChars.length), 1)[0];
                 }, 100);
             charEl.innerText = remainingChars.splice(~~(Math.random() * remainingChars.length), 1)[0];
         })
