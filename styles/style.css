@@ -24,7 +24,7 @@ body {
 header,
 main,
 footer {
-    max-width: 88em;
+    max-width: 80em;
     margin: auto;
 }
 
@@ -48,9 +48,8 @@ header a:not(.active) {
 /* Main related */
 
 main {
-    min-height: 100vh;
     padding: 1em 2em;
-    max-width: 86em;
+    max-width: 76em;
     background-color: var(--c-g1);
     outline: 1px solid var(--c-g1-c0);
 }
