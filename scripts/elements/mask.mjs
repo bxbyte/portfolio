@@ -23,7 +23,6 @@ class MaskedDiv extends HTMLDivElement {
         this.masks.forEach(maskEl => {
             let parentBox = this.parentElement.getBoundingClientRect(),
                 box = maskEl.parentElement.getBoundingClientRect();
-                console.log(`translate(${parentBox.x - box.x}px, ${parentBox.y - box.y}px)`)
             maskEl.style.transform = `translate(${parentBox.x - box.x}px, ${parentBox.y - box.y}px)`;
         })
     }

@@ -4,13 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="../styles/template.css">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/light-theme.css">
-    <link rel="alternate stylesheet" href="../styles/dark-theme.css">
+    <link rel="stylesheet" href="../styles/dark-theme.css">
+    <meta name="theme-color" content="var(--c-g0)"/>
 
     <script src="../scripts/main.mjs" type="module"></script>
+
+    <!-- Surfaces related -->
+    <svg class="surfaces" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <defs>
+            <pattern id="grid" viewBox="0 0 100 100" patternUnits="userSpaceOnUse" width="1em" height="1em">
+                <line x1="50" y1="0" x2="50" y2="100"/>
+                <line x1="0" y1="50" x2="100" y2="50"/>
+            </pattern>
+            <pattern id="cross" viewBox="0 0 100 100" patternUnits="userSpaceOnUse" width="1em" height="1em">
+                <line x1="50" y1="30" x2="50" y2="70"/>
+                <line x1="30" y1="50" x2="70" y2="50"/>
+            </pattern>
+            <pattern id="hash" viewBox="0 0 100 100" patternUnits="userSpaceOnUse" width="1em" height="1em">
+                <line x1="-100" y1="100" x2="100" y2="-100"/>
+                <line x1="0" y1="100" x2="100" y2="0"/>
+                <line x1="0" y1="200" x2="200" y2="0"/>
+            </pattern>
+            <pattern id="dot" viewBox="0 0 100 100" patternUnits="userSpaceOnUse" width="1em" height="1em">
+                <circle cx="50" cy="50" r="10"/>
+            </pattern>
+        </defs>
+    </svg>
 
     <title>Portfolio - Template</title>
 </head>
@@ -18,9 +40,11 @@
     <canvas is="background-canvas"></canvas>
     <header>
         <nav class="right" >
-            <a href="/">home</a>
-            <a href="/pages/project.html">projects</a>
-            <a href="/pages/contact.html">contacts</a>
+            <ul class="nav">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/pages/project.html">Project</a></li>
+                <li><a href="/pages/contact.html">Contact</a></li>
+            </ul>
         </nav>
         <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 6">
             <path d="M0 1 L6 1"/>
@@ -38,16 +62,16 @@
         </section>
         <section id="surfaces">
             <svg class="surface">
-                <rect fill="url(../assets/surfaces.svg#grid)"/>
+                <rect fill="url(#grid)"/>
             </svg>
             <svg class="surface">
-                <rect fill="url(../assets/surfaces.svg#cross)"/>
+                <rect fill="url(#cross)"/>
             </svg>
             <svg class="surface">
-                <rect fill="url(../assets/surfaces.svg#hash)"/>
+                <rect fill="url(#hash)"/>
             </svg>
             <svg class="surface">
-                <rect fill="url(../assets/surfaces.svg#dot)"/>
+                <rect fill="url(#dot)"/>
             </svg>
         </section>
         <section id="boxes">
@@ -65,10 +89,13 @@
                 <use href="../assets/icons.svg#grad"/>
             </svg>
         </section>
+        <section>
+            <button onclick="document.documentElement.classList.toggle('dark')">Switch theme</button>
+        </section>
         <section id="windows">
             <div is="masked-box" id="mask-windows">
                 <svg class="surface">
-                    <rect width="100%" fill="url(../assets/surfaces.svg#hash)"/>
+                    <rect width="100%" fill="url(#hash)"/>
                     <image href="../assets/img/mountain-0.png"
                         x="0" y="0" width="100%" height="100%"
                         preserveAspectRatio="xMidYMin slice"/>
@@ -87,15 +114,31 @@
             </div>
             <div mask="#mask-windows" class="r"></div>
         </section>
-        <footer>
-            <div>
-                <a href="/LICENSE.txt" rel="license">Terms of Use.</a>
-                <a href="" rel="license">© 2023, Privacy Policy.</a>
-            </div>
-            <address class="right">
-                <a href="mailto:lucas.maillet.pro@gmail.com">lucas.maillet.pro@gmail.com</a>
-            </address>
-        </footer>
     </main>
+    <footer>
+        <div class="links">
+            <div>
+                <p>Contact</p>
+                <address>
+                    <ul class="nav">
+                        <li><a href="">Discord</a></li>
+                        <li><a href="mailto:lucas.maillet.pro@gmail.com">Mail</a></li>
+                    </ul>
+                </address>
+            </div>
+            <div>
+                <p>Ressources</p>
+                <ul class="nav">
+                    <li><a href="https://github.com/bxbyte">Github</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <ul class="nav">
+                <li>© 2023, Grenoble</li>
+                <li><a href="./LICENSE.txt" rel="license">Licensed</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>
