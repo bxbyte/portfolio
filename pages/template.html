@@ -7,10 +7,8 @@
     
     <link rel="stylesheet" href="../styles/template.css">
     <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/light-theme.css">
-    <link rel="stylesheet" href="../styles/dark-theme.css">
-    <meta name="theme-color" content="var(--c-g0)"/>
 
+    <script src="../scripts/buttons.js"></script>
     <script src="../scripts/main.mjs" type="module"></script>
 
     <!-- Surfaces related -->
@@ -51,8 +49,9 @@
     <main>
         <section id="texts">
             <h1 class="monoton">main <span is="anim-text" data-method="curse">header</span></h1>
-            <h2 class="pixel">second header</h2>
-            <h3>third header</h3>
+            <h2 class="pixel">second <span is="anim-text" class="flip" data-method="next" data-delta="40">header</span></h2>
+            <h3>third header<h3>
+            <h4>Fourth header</h4>
             <p>Id qui fugiat nostrud ullamco est sint non mollit quis ut. <strong>Among us</strong></p>
             <a class="more">link</a>
         </section>
@@ -72,7 +71,7 @@
         </section>
         <section id="boxes">
             <div class="bbox"></div>
-            <div class="bbox rbox"></div>
+            <div class="bbox rad"></div>
         </section>
         <section id="icons">
             <svg class="icon" viewBox="0 0 24 24">
@@ -85,10 +84,12 @@
                 <use href="../assets/icons.svg#grad"/>
             </svg>
         </section>
-        <section>
-            <button onclick="document.documentElement.classList.toggle('dark')">Switch theme</button>
+        <section id="others">
+            <button onclick="htmlCall.switchTheme()">Switch theme</button>
+            <button class="important">Important</button>
+            <p class="load">Loading</p>
         </section>
-        <section id="windows" class="p-rbox">
+        <section id="windows" class="p-rad">
             <div is="masked-box" id="mask-windows">
                 <svg class="surface">
                     <rect width="100%" fill="url(#hash)"/>
@@ -116,7 +117,7 @@
     <footer>
         <div class="links">
             <div>
-                <p>Contact</p>
+                <p>Contacts</p>
                 <address>
                     <ul class="nav">
                         <li><a href="">Discord</a></li>

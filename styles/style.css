@@ -1,4 +1,5 @@
 @import url(./fonts.css);
+@import url(./colors.css);
 
 * {
     padding: 0;
@@ -6,6 +7,9 @@
     border: none;
     background: none;
     text-decoration: none;
+    font-size: 1em;
+    font-family: "roboto", sans-serif;
+    color: var(--c-g1-c0);
     /* Theme transition */
     transition: .5s ease-in-out;
     transition-property: color, fill, stroke, background-color, border-color, filter;
@@ -16,20 +20,20 @@
     -webkit-transition: color .5s ease-in-out;
 }
 
-:root {
-    font-family: "roboto", sans-serif;
-    color: var(--c-g1-c0);
-}
-
 body {
+    --max-width: 70em;
     background-color: var(--c-g0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
 }
 
 header,
 main,
 footer {
-    max-width: 80em;
-    margin: auto;
+    max-width: var(--max-width);
+    width: calc(100% - 2em);
 }
 
 /* Header related */
@@ -53,7 +57,8 @@ header a:not(.active) {
 
 main {
     padding: 2em;
-    max-width: 76em;
+    margin: 0 -1em;
+    max-width: calc(var(--max-width) - 4em);
     background-color: var(--c-g1);
     outline: 1px solid var(--c-g1-c0);
 }
@@ -138,9 +143,11 @@ ul.nav {
     outline: 1px solid var(--c-g1-c0);
 }
 
-.p-rbox > *,
-.rbox {
+.p-rad > *,
+.rad {
     border-radius: 1em;
+    rx: 1em;
+    ry: 1em;
 }
 
 /* Mask related */
@@ -218,7 +225,7 @@ svg.surfaces {
     word-spacing: .5ch;
 }
 
-h1::first-letter, h2, h3 {
+h1::first-letter, h2::first-letter, h3::first-letter {
     text-transform: capitalize;
 }
 
@@ -234,6 +241,10 @@ h3 {
     font-size: 2em;
 }
 
+h4 {
+    font-size: 1.25em;
+}
+
 a::after {
     position: absolute;
     content: '';
@@ -242,7 +253,7 @@ a::after {
     height: .05em;
     bottom: 0;
     left: 0;
-    transition: width .3s ease-in-out, inherit;
+    transition: width .3s ease-in-out;
 }
 
 .right a::after, a.right::after {
@@ -260,27 +271,94 @@ a {
     color: var(--c-a0);
 }
 
+/* Load */
+
+.load::before {
+    content: '';
+    color: var(--c-a0);
+    margin-right: 1ch;
+    animation: load .5s ease-in-out infinite;
+}
+
+@keyframes load {
+    0% {
+        content: '⠋';
+    }
+    10% {
+        content: '⠙';
+    }
+    20% {
+        content: '⠹';
+    }
+    30% {
+        content: '⠸';
+    }
+    40% {
+        content: '⠼';
+    }
+    50% {
+        content: '⠴';
+    }
+    60% {
+        content: '⠦';
+    }
+    70% {
+        content: '⠧';
+    }
+    90% {
+        content: '⠇';
+    }
+    100% {
+        content: '⠏';
+    }
+}
+
 /* Animated text */
 
 [is=anim-text] {
     display: inline-block;
     flex-direction: row;
     align-items:end;
+    font-family: inherit;
 }
 
 [is=anim-text] span {
     display: inline-block;
-    width: 1ch;
-    max-height: 1em;
+    font-family: inherit;
 }
 
-/* @keyframes fliping {
-    100% {
-        transform: rotateY(-360deg);
+[data-method=load] span.animated {
+    color: var(--c-a0);
+}
+
+.flip span.animated {
+    animation: flip .5s ease-in-out;
+}
+
+@keyframes flip {
+    50% {
+        transform: translateX(1em) rotateX(90deg);
+    }
+    75% {
+        transform: translateX(-.2em);
+    }
+    to {
+        transform: translateX(0);
     }
 }
 
-[is="anim-text"][data-method="fliping"] span.on {
-    transition: all .1s ease-in-out;
-    animation: flip .2s ease forwards;
-} */
+/* Buttons */
+
+button {
+    padding: .5em;
+    border-radius: .5em;
+}
+
+button:not(.important) {
+    border: 1px solid var(--c-g1-c0);
+}
+
+button.important {
+    background-color: var(--c-a0);
+    color: var(--c-a0-c0);
+}

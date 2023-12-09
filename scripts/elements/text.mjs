@@ -14,6 +14,25 @@ function toSpanEl(text) {
     return spanEl;
 }
 
+/**
+ * Get computed CSS duration of animation
+ * @param {String} className    Class of targeted css style.
+ * @param {String} prop         Name of propriety transition / animation (default)
+ * @returns {Number}
+ */
+function getCSSDuration(className, prop = "animation") {
+    let parentElement = document.createElement("span");
+    parentElement.className = className;
+    let element = document.createElement("span");
+    element.classList.add(ANIMATED_CLASS_NAME)
+    parentElement.appendChild(element);
+    document.body.appendChild(parentElement);
+    let time = parseFloat(getComputedStyle(element)[`${prop}Duration`]) * 1e3;
+    parentElement.remove();
+    element.remove();
+    return time;
+}
+
 class AnimatedText extends HTMLSpanElement {
     timeoutIds = []
     intervalIds = []
@@ -35,7 +54,7 @@ class AnimatedText extends HTMLSpanElement {
             return
         await ({
             next: this.animNext.bind(this),
-            curse: this.animCurse.bind(this)
+            curse: this.animCurse.bind(this),
         }[this.dataset.method])();
     }
 
@@ -64,7 +83,7 @@ class AnimatedText extends HTMLSpanElement {
      * @param {Number} timeout      setTimeout timeout
      * @returns {Number}            setTimeout id
      */
-    setTimeOut(callback, timeout) {
+    setTimeout(callback, timeout) {
         let id = setTimeout(callback, timeout);
         this.timeoutIds.push(id);
         return id;
@@ -93,32 +112,27 @@ class AnimatedText extends HTMLSpanElement {
 
     /**
      * Wait for a moment on a element before calling back to the next one
-     * @param {(Element) => Element | undefined} callback   Call one a element returning the next one
+     * @param {(el: Element, next: (el: Element) => Promise<undefined>) => Promise<undefined>} callback   Call one a element returning the next one
      * @param {Element} element                             First element
-     * @param {Number} deltatimeout                         Timeout between call
      * @returns {Promise<undefined>}
      */
-    async waitNext(callback, element, deltatimeout) {
-        return new Promise(res => {
-            let nextElement = callback(element);
-            if (nextElement)
-                this.setTimeout(async () => {
-                    await waitNext(callback, nextElement, deltatimeout);
-                    res(); 
-                }, deltatimeout);
-            else res();
-        })
+    async next(callback, element) {
+        async function next(nextElement) {
+            if (nextElement) await callback(nextElement, next.bind(this));
+        }
+        await callback(element, next.bind(this));
     }
-    
+
     /**
      * Animate by addind ANIMATED_CLASS_NAME to a char one after another
      */
     async animNext() {
-        await this.waitNext(node => {
-            node.classList.add(ANIMATED_CLASS_NAME)
-            return node.nextElementSibling
-        }, this.firstElementChild, 200);
-        await this.wait(200);
+        await this.next(async (charEl, next) => {
+            charEl.classList.add(ANIMATED_CLASS_NAME)
+            await this.wait(this.dataset.delta)
+            await next(charEl.nextElementSibling);
+        }, this.firstElementChild);
+        await this.wait(getCSSDuration(this.className));
         this.clear();
     }
 

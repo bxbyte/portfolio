@@ -12,7 +12,8 @@ main {
 }
 
 #surfaces, 
-#boxes {
+#boxes, 
+#others {
     display: flex;
     flex-flow: row wrap;
     gap: 1em;

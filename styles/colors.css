@@ -1,0 +1,17 @@
+html {
+    --c-g0: #faeae0;        /* 1st degree plain color */
+    --c-g1: #fffaf8;        /* 2nd degree plain color */
+    --c-g1-c0: #383330;     /* 2nd degree contrasted 1st degree plain color */
+    --c-a0: #dd2e54;        /* 1st degree accent color */
+    --c-a0-c0: #383330;     /* 1st degree contrasted 1st degree accent color */
+    --b: 110%;                /* Brightness */
+}
+
+html.dark {
+    --c-g0: #121415;        /* 1st degree plain color */
+    --c-g1: #111314;        /* 2nd degree plain color */
+    --c-g1-c0: #e4d1c6;     /* 2nd degree contrasted 1st degree plain color */
+    --c-a0: #51c9a1;        /* 1st degree accent color */
+    --c-a0-c0: #383330;     /* 1st degree contrasted 1st degree accent color */
+    --b: 70%;                 /* Brightness */
+}
