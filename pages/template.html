@@ -50,7 +50,7 @@
     </header>
     <main>
         <section id="texts">
-            <h1 class="monoton">main <span is="anim-text" data-method="cursed">header</span></h1>
+            <h1 class="monoton">main <span is="anim-text" data-method="curse">header</span></h1>
             <h2 class="pixel">second header</h2>
             <h3>third header</h3>
             <p>Id qui fugiat nostrud ullamco est sint non mollit quis ut. <strong>Among us</strong></p>
@@ -69,13 +69,10 @@
             <svg class="surface">
                 <rect fill="url(#dot)"/>
             </svg>
-            <svg class="surface">
-                <rect fill="url(#noise)"/>
-            </svg>
         </section>
         <section id="boxes">
-            <div class="box"></div>
-            <div class="box r"></div>
+            <div class="bbox"></div>
+            <div class="bbox rbox"></div>
         </section>
         <section id="icons">
             <svg class="icon" viewBox="0 0 24 24">
@@ -91,27 +88,29 @@
         <section>
             <button onclick="document.documentElement.classList.toggle('dark')">Switch theme</button>
         </section>
-        <section id="windows">
+        <section id="windows" class="p-rbox">
             <div is="masked-box" id="mask-windows">
                 <svg class="surface">
                     <rect width="100%" fill="url(#hash)"/>
-                    <image href="../assets/img/mountain-0.png"
-                        x="0" y="0" width="100%" height="100%"
+                    <image class="bw"
+                        xlink:href="../assets/img/mountain-0.png"
+                        alt="err"
+                        width="100%" height="100%"
                         preserveAspectRatio="xMidYMin slice"/>
                 </svg>
             </div>
-            <div mask="#mask-windows" class="r">
+            <div mask="#mask-windows">
             </div>
-            <div mask="#mask-windows" class="r">
+            <div mask="#mask-windows">
                 <div class="content">
                     <h1 class="monoton">Mask</h1>
                 </div>
             </div>
-            <div mask="#mask-windows" class="r">
+            <div mask="#mask-windows">
             </div>
-            <div mask="#mask-windows" class="r">
+            <div mask="#mask-windows">
             </div>
-            <div mask="#mask-windows" class="r"></div>
+            <div mask="#mask-windows"></div>
         </section>
     </main>
     <footer>

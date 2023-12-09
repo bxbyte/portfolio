@@ -1,6 +1,8 @@
 html.dark {
-    --c-g0: #1f1a16;
-    --c-g1: #141311;
-    --c-g1-c0: #e4d1c6;
-    --c-a0: #2edda9;
+    --c-g0: #161513; /* 1st degree plain color */
+    --c-g1: #141311; /* 2nd degree plain color */
+    --c-g1-c0: #e4d1c6; /* 2nd degree contrasted 1st degree plain color */
+    --c-a0: #4ff0ba;  /* 1st degree accent color */
+    --c-a1: #1b8562;  /* 2st degree accent color */
+    --b: 70%; /* Brightness */
 }
