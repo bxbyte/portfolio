@@ -10,14 +10,6 @@
     font-size: 1em;
     font-family: "roboto", sans-serif;
     color: var(--c-g1-c0);
-    /* Theme transition */
-    transition: .5s ease-in-out;
-    transition-property: color, fill, stroke, background-color, border-color, filter;
-    -webkit-transition-property: fill, stroke, background-color, border-color, filter;
-}
-
-:root, a { /* Fix weird bug with Chrome */
-    -webkit-transition: color .5s ease-in-out;
 }
 
 body {
@@ -36,7 +28,7 @@ footer {
     width: calc(100% - 2em);
 }
 
-/* Header related */
+/* Header */
 
 header {
     display: flex;
@@ -53,7 +45,7 @@ header a:not(.active) {
     color: var(--c-g1-c0);
 }
 
-/* Main related */
+/* Main */
 
 main {
     padding: 2em;
@@ -63,7 +55,7 @@ main {
     outline: 1px solid var(--c-g1-c0);
 }
 
-/* Footer related */
+/* Footer */
 
 footer {
     display: flex;
@@ -104,7 +96,7 @@ footer address {
     font-style: normal;
 }
 
-/* Canvas Related */
+/* Canvas */
 
 canvas {
     position: fixed;
@@ -113,14 +105,14 @@ canvas {
     pointer-events: none;
 }
 
-/* Nav related */
+/* Nav */
 
 ul.nav {
     list-style: none;
     display: flex;
 }
 
-/* Icon related */
+/* Icon */
 
 .icon {
     fill: none;
@@ -130,16 +122,16 @@ ul.nav {
     stroke-linejoin: round;
 }
 
-/* Image related */
+/* Images */
 
 .bw {
     filter: saturate(0) brightness(var(--b));
 }
 
-/* Box related */
+/* Boxs */
 
-.p-bbox > *,
-.bbox {
+.p-border > *,
+.border {
     outline: 1px solid var(--c-g1-c0);
 }
 
@@ -150,7 +142,7 @@ ul.nav {
     ry: 1em;
 }
 
-/* Mask related */
+/* Masks */
 
 [is=masked-box] {
     display: none;
@@ -178,7 +170,7 @@ ul.nav {
     height: 100vh; */
 }
 
-/* Window related */
+/* Window */
 
 .open {
     position: fixed;
@@ -191,7 +183,7 @@ ul.nav {
     transition-property: top, left, width, height, inherit;
 }
 
-/* Surfaces related */
+/* Surfaces */
 
 svg.surfaces {
     position: absolute;
@@ -211,7 +203,30 @@ svg.surfaces {
     height: 100%;
 }
 
-/* Text related */
+/* Backgrounds */
+
+.gradient {
+    background: linear-gradient(45deg, var(--g)), url(../assets/img/noise.svg);
+    color: var(--c-a0-c0);
+}
+
+.accent {
+    background-color: var(--c-a0);
+    color: var(--c-a0-c0);
+}
+
+.contrast {
+    background-color: var(--c-g1-c0);
+    color: var(--c-g1);
+}
+
+/* Texts */
+
+.tcontrast {
+    background: linear-gradient(45deg, var(--g)), url(../assets/img/noise.svg);
+    background-clip: text;
+    color: transparent;
+}
 
 .monoton {
     font-family: 'monoton', sans-serif;
@@ -270,8 +285,6 @@ a {
     width: fit-content;
     color: var(--c-a0);
 }
-
-/* Load */
 
 .load::before {
     content: '';
@@ -350,15 +363,49 @@ a {
 /* Buttons */
 
 button {
+    --rad: .5em;
+    position: relative;
     padding: .5em;
-    border-radius: .5em;
+    border-radius: var(--rad);
+    z-index: 1;
 }
 
-button:not(.important) {
-    border: 1px solid var(--c-g1-c0);
+button:hover {
+    transform: scale(1.05);
 }
 
-button.important {
-    background-color: var(--c-a0);
-    color: var(--c-a0-c0);
+button:active {
+    transform: scale(.95);
+}
+
+button.border {
+    outline: 1px solid var(--c-g1-c0);
+}
+
+button.border::before {
+    --padding: 0px;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--rad);
+    outline: 1px dashed transparent;
+    transition: .2s ease-in-out;
+    transition-property: outline-color, top, left, padding, border-radius;
+    z-index: -1;
+    border-radius: calc(var(--rad) + var(--padding) / 2);
+    top: calc(-1 * var(--padding));
+    left: calc(-1 * var(--padding));
+    padding: var(--padding);
+}
+
+button.border:hover {
+    outline-color: var(--c-a0);
+}
+
+button.border:hover::before {
+    --padding: .2em;
+    outline-color: var(--c-a0);
 }

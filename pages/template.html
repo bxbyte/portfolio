@@ -54,6 +54,7 @@
             <h4>Fourth header</h4>
             <p>Id qui fugiat nostrud ullamco est sint non mollit quis ut. <strong>Among us</strong></p>
             <a class="more">link</a>
+            <p class="load">Loading</p>
         </section>
         <section id="surfaces">
             <svg class="surface">
@@ -69,9 +70,14 @@
                 <rect fill="url(#dot)"/>
             </svg>
         </section>
+        <section id="backgrounds">
+            <div class="contrast"></div>
+            <div class="accent"></div>
+            <div class="gradient"></div>
+        </section>
         <section id="boxes">
-            <div class="bbox"></div>
-            <div class="bbox rad"></div>
+            <div class="border"></div>
+            <div class="border rad"></div>
         </section>
         <section id="icons">
             <svg class="icon" viewBox="0 0 24 24">
@@ -84,13 +90,14 @@
                 <use href="../assets/icons.svg#grad"/>
             </svg>
         </section>
-        <section id="others">
-            <button onclick="htmlCall.switchTheme()">Switch theme</button>
-            <button class="important">Important</button>
-            <p class="load">Loading</p>
+        <section id="buttons">
+            <button onclick="htmlCall.switchTheme()" class="contrast">Contrast</button>
+            <button class="accent">Accent</button>
+            <button class="gradient">Gradient</button>
+            <button class="border">Border</button>
         </section>
         <section id="windows" class="p-rad">
-            <div is="masked-box" id="mask-windows">
+            <div is="masked-box" id="mask">
                 <svg class="surface">
                     <rect width="100%" fill="url(#hash)"/>
                     <image class="bw"
@@ -100,18 +107,18 @@
                         preserveAspectRatio="xMidYMin slice"/>
                 </svg>
             </div>
-            <div mask="#mask-windows">
+            <div mask="#mask">
             </div>
-            <div mask="#mask-windows">
+            <div mask="#mask">
                 <div class="content">
-                    <h1 class="monoton">Mask</h1>
+                    <h1 class="pixel tcontrast">Mask</h1>
                 </div>
             </div>
-            <div mask="#mask-windows">
+            <div mask="#mask">
             </div>
-            <div mask="#mask-windows">
+            <div mask="#mask">
             </div>
-            <div mask="#mask-windows"></div>
+            <div mask="#mask"></div>
         </section>
     </main>
     <footer>
