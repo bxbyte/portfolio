@@ -406,6 +406,6 @@ button.border:hover {
 }
 
 button.border:hover::before {
-    --padding: .2em;
+    --padding: 3px;
     outline-color: var(--c-a0);
 }
