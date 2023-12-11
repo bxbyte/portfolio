@@ -225,6 +225,7 @@ svg.surfaces {
 .tcontrast {
     background: linear-gradient(45deg, var(--g)), url(../assets/img/noise.svg);
     background-clip: text;
+    -webkit-background-clip: text;
     color: transparent;
 }
 

@@ -4,7 +4,7 @@ const ANIMATED_CLASS_NAME = "animated",
     CURSED_CHARSET = ['⬚', '$', '/', '﹏', '﹍', 'A', 'Z', '▒', '░', '⠻', '⛦'];
     
 /**
- * Create a span element with a content
+ * Turn a string into a span element
  * @param {*} text  Span content
  * @returns {HTMLSpanElement} the span element
  */
