@@ -7,7 +7,6 @@ html {
     --c-g1-c0: #383330;
     /* 1st degree accent color */
     --c-a0: #6296f6;
-    /* --c-a0: #dd2e54; */
     /* 1st degree contrasted 1st degree accent color */
     --c-a0-c0: #f8f3f1;
     /* Gradient */
@@ -17,26 +16,11 @@ html {
 }
 
 html.dark {
-    --c-g0: #121415;
-    --c-g1: #111314;
-    --c-g1-c0: #f7efea;
+    --c-g0: #121313;
+    --c-g1: #121313;
+    --c-g1-c0: #cdcac8;
     --c-a0: #a182fb;
-    /* --c-a0: #bdef5b; */
     --c-a0-c0: #131211;
     --g: #88ff0080, #75ecc980;
     --b: 70%;
 }
-
-/* html {
-    --c-g0: #e0f6fa;
-    --c-a0: #542edd;
-    --c-a0-c0: #f5efeb;
-    --g: #542eddd2, #2e8edd83;
-} */
-
-/* html {
-    --c-g0: #f7e0fa;
-    --c-a0: #882edd;
-    --c-a0-c0: #f5efeb;
-    --g: #882eddce, #2e5ddd75;
-} */
