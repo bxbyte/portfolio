@@ -12,3 +12,8 @@
     font-family: "pixelify";
     src: url(../assets/fonts/pixelify.ttf);
 }
+
+@font-face {
+    font-family: "firacode";
+    src: url(../assets/fonts/firacode.ttf);
+}

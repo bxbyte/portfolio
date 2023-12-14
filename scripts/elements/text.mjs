@@ -1,8 +1,9 @@
-import { onView } from "./view.mjs"
+import { onView } from "./view.mjs";
 
-const ANIMATED_CLASS_NAME = "animated",
-    CURSED_CHARSET = ['⬚', '$', '/', '﹏', '﹍', 'A', 'Z', '▒', '░', '⠻', '⛦'];
-    
+const END_CLASS_NAME = "end",
+    ANIMATED_CLASS_NAME = "animated",
+    CURSED_CHARSET = ['⬚', '$', '/', 'A', 'Z', '▒', '░', '⠻', '⛦'];
+
 /**
  * Turn a string into a span element
  * @param {*} text  Span content
@@ -36,6 +37,10 @@ function getCSSDuration(className, prop = "animation") {
 class AnimatedText extends HTMLSpanElement {
     timeoutIds = []
     intervalIds = []
+    methodProxy = {
+        next: this.animNext.bind(this),
+        curse: this.animCurse.bind(this),
+    }
 
     /**
      * Setup & prepare to animate when on viewport
@@ -43,6 +48,8 @@ class AnimatedText extends HTMLSpanElement {
     connectedCallback() {
         this.defaultTxt = this.innerText;
         this.replaceChildren(...(this.chars = [...this.innerText].map(toSpanEl)));
+        if (!(this.dataset.method in this.methodProxy))
+            return
         onView(this, this.animationCallback.bind(this), this.cancel.bind(this));
     }
 
@@ -50,18 +57,14 @@ class AnimatedText extends HTMLSpanElement {
      * Call defined animation method
      */
     async animationCallback () {
-        if (!this.dataset.method)
-            return
-        await ({
-            next: this.animNext.bind(this),
-            curse: this.animCurse.bind(this),
-        }[this.dataset.method])();
+        await this.methodProxy[this.dataset.method]();
     }
 
     /**
      * Clear current animation
      */
     clear() {
+        this.classList.remove(END_CLASS_NAME);
         this.chars.forEach(charEl => charEl.removeAttribute("class"));
         this.timeoutIds = [];
         this.intervalIds = [];
@@ -134,6 +137,7 @@ class AnimatedText extends HTMLSpanElement {
         }, this.firstElementChild);
         await this.wait(getCSSDuration(this.className));
         this.clear();
+        this.classList.add(END_CLASS_NAME);
     }
 
     /**

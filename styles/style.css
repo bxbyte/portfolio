@@ -4,6 +4,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-style: normal;
     border: none;
     background: none;
     text-decoration: none;
@@ -66,12 +67,12 @@ footer {
 footer > div:not(.links) {
     border-top: 1px solid var(--c-g1-c0);
     padding-top: 1em;
-    display: flex;
-    justify-content: end;
 }
 
 footer > div:not(.links) ul {
-    gap: 1em;
+    gap: .5em;
+    flex-flow: row wrap;
+    justify-content: right;
 }
 
 footer .links {
@@ -90,10 +91,6 @@ footer .links .nav  {
 footer p {
     font-size: large;
     margin-bottom: .5em;
-}
-
-footer address {
-    font-style: normal;
 }
 
 /* Canvas */
@@ -166,8 +163,6 @@ ul.nav {
 .mask > * {
     width: 100%;
     height: 100%;
-    /* width: 100vw;
-    height: 100vh; */
 }
 
 /* Window */
@@ -222,27 +217,28 @@ svg.surfaces {
 
 /* Texts */
 
-.tcontrast {
-    background: linear-gradient(45deg, var(--g)), url(../assets/img/noise.svg);
+.clip {
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
 }
 
-.monoton {
-    font-family: 'monoton', sans-serif;
+.mono {
+    font-family: "monoton", sans-serif;
     font-weight: 100;
     word-spacing: .5ch;
 }
 
 .pixel {
-    font-family: 'pixelify', sans-serif;
+    font-family: "pixelify", sans-serif;
     font-weight: 100;
-    word-spacing: .5ch;
+    word-spacing: .25ch;
 }
 
-h1::first-letter, h2::first-letter, h3::first-letter {
-    text-transform: capitalize;
+.fira {
+    font-family: "firacode", sans-serif;
+    font-weight: 100;
+    word-spacing: .25ch;
 }
 
 h1 {
@@ -330,14 +326,14 @@ a {
 /* Animated text */
 
 [is=anim-text] {
-    display: inline-block;
-    flex-direction: row;
-    align-items:end;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
     font-family: inherit;
 }
 
 [is=anim-text] span {
-    display: inline-block;
+    display: inline-flex;
     font-family: inherit;
 }
 
@@ -358,6 +354,46 @@ a {
     }
     to {
         transform: translateX(0);
+    }
+}
+
+.slide {
+    overflow-y: hidden;
+}
+
+.slide span {
+    opacity: 0;
+    transform: translateY(2em);
+}
+
+.slide.end span {
+    opacity: 1;
+    transform: none;
+}
+
+.slide span.animated {
+    animation: slide .75s ease-in-out forwards;
+}
+
+@keyframes slide {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.wave span.animated {
+    --ax: .125em;
+    --ay: .5em;
+    animation: wave .75s ease-in-out forwards;
+}
+
+@keyframes wave {
+    25% {
+        transform: translate(calc(-1 * var(--ax)), calc(-1 * var(--ay)));
+    }
+    75% {
+        transform: translate(var(--ax), var(--ay));
     }
 }
 

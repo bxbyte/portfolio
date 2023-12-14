@@ -6,7 +6,8 @@ html {
     /* 2nd degree contrasted 1st degree plain color */         
     --c-g1-c0: #383330;
     /* 1st degree accent color */
-    --c-a0: #dd2e54;
+    --c-a0: #6296f6;
+    /* --c-a0: #dd2e54; */
     /* 1st degree contrasted 1st degree accent color */
     --c-a0-c0: #f8f3f1;
     /* Gradient */
@@ -19,7 +20,8 @@ html.dark {
     --c-g0: #121415;
     --c-g1: #111314;
     --c-g1-c0: #f7efea;
-    --c-a0: #afd661;
+    --c-a0: #a182fb;
+    /* --c-a0: #bdef5b; */
     --c-a0-c0: #131211;
     --g: #88ff0080, #75ecc980;
     --b: 70%;
