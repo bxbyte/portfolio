@@ -329,7 +329,7 @@ a {
 [is=anim-text] {
     display: inline-flex;
     flex-flow: row nowrap;
-    align-items: center;
+    align-items: end;
     font-family: inherit;
 }
 
@@ -338,8 +338,11 @@ a {
     font-family: inherit;
 }
 
-[data-method=curse] span {
+[data-method=curse] {
     height: 1em;
+}
+
+[data-method=curse] span {
     width: 1ch;
 }
 
