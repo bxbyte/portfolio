@@ -337,6 +337,11 @@ a {
     font-family: inherit;
 }
 
+[data-method=curse] span {
+    height: 1em;
+    width: 1ch;
+}
+
 [data-method=load] span.animated {
     color: var(--c-a0);
 }
