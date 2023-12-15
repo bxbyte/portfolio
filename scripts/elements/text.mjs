@@ -1,4 +1,5 @@
 import { onView } from "./view.mjs";
+import { getCSSDuration } from "../utils.mjs";
 
 const END_CLASS_NAME = "end",
     ANIMATED_CLASS_NAME = "animated",
@@ -16,12 +17,12 @@ function toSpanEl(text) {
 }
 
 /**
- * Get computed CSS duration of animation
- * @param {String} className    Class of targeted css style.
+ * Get computed CSS duration of char
+ * @param {String} className    Class of targeted char style.
  * @param {String} prop         Name of propriety transition / animation (default)
  * @returns {Number}
  */
-function getCSSDuration(className, prop = "animation") {
+function getCharDuration(className, prop = "animation") {
     let parentElement = document.createElement("span");
     parentElement.className = className;
     let element = document.createElement("span");
@@ -135,7 +136,7 @@ class AnimatedText extends HTMLSpanElement {
             await this.wait(this.dataset.delta)
             await next(charEl.nextElementSibling);
         }, this.firstElementChild);
-        await this.wait(getCSSDuration(this.className));
+        await this.wait(getCharDuration(this.className));
         this.clear();
         this.classList.add(END_CLASS_NAME);
     }

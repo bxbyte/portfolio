@@ -1,15 +1,15 @@
-const VIEW_CLASS_NAME = "viewed",
+const ViewClassName = "viewed",
     viewEvent = new CustomEvent("viewed"),
     hideEvent = new CustomEvent("hide"),
     resizeElCallback = new Map(),
     viewer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting){
-                entry.target.classList.add(VIEW_CLASS_NAME);
+                entry.target.classList.add(ViewClassName);
                 entry.target.dispatchEvent(viewEvent);
             }
             else {
-                entry.target.classList.remove(VIEW_CLASS_NAME);
+                entry.target.classList.remove(ViewClassName);
                 entry.target.dispatchEvent(hideEvent);
             }
         })
@@ -21,7 +21,7 @@ const VIEW_CLASS_NAME = "viewed",
  * @returns {boolean}
  */
 export function isViewed(element) {
-    return element.classList.contains(VIEW_CLASS_NAME);
+    return element.classList.contains(ViewClassName);
 }
 
 /**

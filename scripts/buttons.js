@@ -1,5 +1,3 @@
 const htmlCall = {
-    switchTheme: () => {
-        document.documentElement.classList.toggle('dark')
-    }
+    switchTheme: () => document.documentElement.classList.toggle('dark')
 };

@@ -6,11 +6,11 @@ html {
     /* 2nd degree contrasted 1st degree plain color */         
     --c-g1-c0: #383330;
     /* 1st degree accent color */
-    --c-a0: #6296f6;
+    --c-a0: #dd2e54;
     /* 1st degree contrasted 1st degree accent color */
     --c-a0-c0: #f8f3f1;
     /* Gradient */
-    --g: #dd2e54, #f5792c71;
+    --g: #dd2e2ec2, #f5792c71;
     /* Brightness */
     --b: 110%;
 }
@@ -18,7 +18,7 @@ html {
 html.dark {
     --c-g0: #121313;
     --c-g1: #121313;
-    --c-g1-c0: #cdcac8;
+    --c-g1-c0: #f3f3ff;
     --c-a0: #a182fb;
     --c-a0-c0: #131211;
     --g: #88ff0080, #75ecc980;

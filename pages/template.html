@@ -96,8 +96,8 @@
             <button class="gradient">Gradient</button>
             <button class="border">Border</button>
         </section>
-        <section id="windows" class="p-rad">
-            <div is="masked-box" id="mask">
+        <section id="windows" class="p-rad" gridable>
+            <div is="masked-box" id="masked-img">
                 <svg class="surface">
                     <rect width="100%" fill="url(#hash)"/>
                     <image class="bw"
@@ -107,18 +107,19 @@
                         preserveAspectRatio="xMidYMin slice"/>
                 </svg>
             </div>
-            <div mask="#mask">
+            <div mask="masked-img">
             </div>
-            <div mask="#mask">
+            <div mask="masked-img">
+                <div class="mask gradient"></div>
                 <div class="content">
                     <h1 class="pixel clip gradient">Mask</h1>
                 </div>
             </div>
-            <div mask="#mask">
+            <div mask="masked-img">
             </div>
-            <div mask="#mask">
+            <div mask="masked-img">
             </div>
-            <div mask="#mask"></div>
+            <div mask="masked-img"></div>
         </section>
     </main>
     <footer>

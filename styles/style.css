@@ -10,7 +10,7 @@
     background: none;
     text-decoration: none;
     font-size: 1em;
-    font-family: "roboto", sans-serif;
+    font-family: inherit;
     color: var(--c-g1-c0);
 }
 
@@ -21,6 +21,7 @@ body {
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+    font-family: "roboto", sans-serif;
 }
 
 header,
@@ -135,9 +136,7 @@ ul.nav {
 
 .p-rad > *,
 .rad {
-    border-radius: 1em;
-    rx: 1em;
-    ry: 1em;
+    border-radius: .75em;
 }
 
 /* Masks */
@@ -162,6 +161,7 @@ ul.nav {
 }   
 
 .mask > * {
+    position: absolute;
     width: 100%;
     height: 100%;
 }
@@ -330,11 +330,6 @@ a {
     display: inline-flex;
     flex-flow: row nowrap;
     align-items: end;
-    font-family: inherit;
-}
-
-[is=anim-text] span {
-    display: inline-flex;
     font-family: inherit;
 }
 
