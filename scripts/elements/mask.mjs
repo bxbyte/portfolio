@@ -1,53 +1,52 @@
-import { onResizeView } from "./view.mjs";
-import { GridEvent } from "./grid.mjs";
-import { renderFrame, getCSSDuration } from "../utils.mjs";
+import { onResizeView, onView } from "./view.mjs";
 
 class MaskedDiv extends HTMLDivElement {
+    refreshing = true;
+    maskChilds = new Set();
 
     /**
      * Setup 
      */
     async connectedCallback() {
-        this.masks = Array.from(document.querySelectorAll(`[mask="${this.id}"]`)).map(
-            el => {
-                let maskEl = el.querySelector(".mask");
-                if (!maskEl) {
-                    maskEl = document.createElement("div");
-                    maskEl.classList.add("mask");
-                    el.insertBefore(maskEl, el.firstChild);
-                }
-                this.childNodes.forEach(child => maskEl.appendChild(child.cloneNode(true)));
-                return maskEl;
-            }
-        );
-        onResizeView(this.parentElement, this.updMask.bind(this));
-        this.parentElement.addEventListener(GridEvent.type, () => setTimeout(renderFrame(this.updMaskPos.bind(this)), getCSSDuration(this.parentElement)));
+        this.cvs = document.createElement("canvas");
+        this.ctx = this.cvs.getContext("2d");
+
+        onResizeView(this.parentElement, () => {
+            let parentBox = this.parentElement.getBoundingClientRect();
+            this.cvs.width = parentBox.width;
+            this.cvs.height = parentBox.height;
+        })
+        
+        document.querySelectorAll(`[mask=${this.id}]`).forEach(maskEl => {
+            onView(maskEl, () => this.maskChilds.add(maskEl), () => this.maskChilds.delete(maskEl));
+            onResizeView(maskEl, this.render.bind(this));
+        });
     }
 
     /**
-     * Update mask elements position & size
+     * Render mask on element
      */
-    updMask() {
-        this.masks.forEach(maskEl => {
-            let parentBox = this.parentElement.getBoundingClientRect(),
-                box = maskEl.parentElement.getBoundingClientRect();
-            maskEl.style.left = `${parentBox.x - box.x}px`;
-            maskEl.style.top = `${parentBox.y - box.y}px`;
-            maskEl.style.width = `${parentBox.width}px`;
-            maskEl.style.height = `${parentBox.height}px`;
-        })
+    render() {
+        this.ctx.clearRect(0, 0, this.cvs.width, this.cvs.height);
+        this.drawChildMasks();
+        this.ctx.fill();
+        this.refresh();
     }
 
     /**
-     * Update mask elements position
+     * Draw every visible child on mask
      */
-    updMaskPos() {
-        this.masks.forEach(maskEl => {
-            let parentBox = this.parentElement.getBoundingClientRect(),
-                box = maskEl.parentElement.getBoundingClientRect();
-            maskEl.style.left = `${parentBox.x - box.x}px`;
-            maskEl.style.top = `${parentBox.y - box.y}px`;
-        })
+    drawChildMasks() {
+        this.maskChilds.forEach(async maskEl => {
+            this.ctx.roundRect(maskEl.offsetLeft, maskEl.offsetTop, maskEl.offsetWidth, maskEl.offsetHeight, parseInt(getComputedStyle(maskEl).borderRadius))
+        });
+    }
+
+    /**
+     * Refresh mask on element
+     */
+    refresh() {
+        this.style.mask = `url(${this.cvs.toDataURL()})`;
     }
 }
 

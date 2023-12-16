@@ -1,8 +1,13 @@
 const ViewClassName = "viewed",
     viewEvent = new CustomEvent("viewed"),
-    hideEvent = new CustomEvent("hide"),
-    resizeElCallback = new Map(),
-    viewer = new IntersectionObserver((entries) => {
+    hideEvent = new CustomEvent("hided"),
+    sizeEventType = "sized",
+    sizeObserver = new ResizeObserver((entries) =>
+        entries.forEach(entry =>
+            entry.target.dispatchEvent(new CustomEvent(sizeEventType, { detail: entry }))
+        )
+    ),
+    viewObserver = new IntersectionObserver((entries) => 
         entries.forEach(entry => {
             if (entry.isIntersecting){
                 entry.target.classList.add(ViewClassName);
@@ -13,7 +18,7 @@ const ViewClassName = "viewed",
                 entry.target.dispatchEvent(hideEvent);
             }
         })
-    });
+    );
 
 /**
  * If element is in viewport
@@ -27,32 +32,23 @@ export function isViewed(element) {
 /**
  * Callback if an element is in viewport
  * @param {Element} element             Watched element
- * @param {Function} onViewCallback     Callback when the element is in viewport
- * @param {Function?} onHideCallback    Callback when the element is out of viewport
+ * @param {() => void} onViewCallback     Callback when the element is in viewport
+ * @param {(() => void)?} onHideCallback    Callback when the element is out of viewport
  */
 export function onView(element, onViewCallback, onHideCallback) {
     element.addEventListener(viewEvent.type, onViewCallback);
     if (onHideCallback) element.addEventListener(hideEvent.type, onHideCallback);
-    viewer.observe(element);
+    viewObserver.observe(element);
 }
 
 /**
  * Callback when the window resize if the element is in viewport (optimized)
  * @param {Element} element     Watched element
- * @param {Function} callback   Callback on resize
+ * @param {() => void} callback   Callback on resize
  */
 export function onResizeView(element, callback) {
-    resizeElCallback.set(element, callback);
-    callback();
-    // element.addEventListener(viewEvent.type, () => callback(), { once: true });
-    viewer.observe(element);
+    element.addEventListener(sizeEventType, callback);
+    onView(element, () => sizeObserver.observe(element), () => sizeObserver.unobserve(element));
 }
 
-window.addEventListener("resize", () =>{
-    resizeElCallback.forEach((callback, element) => {
-        if (isViewed(element))
-            callback();
-    })
-});
-
-document.querySelectorAll("main > section").forEach(element => viewer.observe(element));
+document.querySelectorAll("main > section").forEach(element => viewObserver.observe(element));

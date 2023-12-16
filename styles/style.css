@@ -5,11 +5,11 @@
     padding: 0;
     margin: 0;
     font-style: normal;
-    font-weight: 100;
     border: none;
     background: none;
     text-decoration: none;
     font-size: 1em;
+    line-height: 1em;
     font-family: inherit;
     color: var(--c-g1-c0);
 }
@@ -92,16 +92,7 @@ footer .links .nav  {
 
 footer p {
     font-size: large;
-    margin-bottom: .5em;
-}
-
-/* Canvas */
-
-canvas {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+    margin-bottom: .75em;
 }
 
 /* Nav */
@@ -142,41 +133,19 @@ ul.nav {
 /* Masks */
 
 [is=masked-box] {
-    display: none;
-}
-
-[mask] {
-    overflow: hidden;
-    display: block;
-    position: relative;
-    display: block;
-}
-
-[mask] > .mask {
     position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: mask-image .1s ease-in-out;
 }
 
-[mask] > :not(.mask)  {
-    position: relative;
-}   
-
-.mask > * {
-    position: absolute;
+[is=masked-box] > * {
     width: 100%;
     height: 100%;
 }
 
-/* Window */
-
-.open {
-    position: fixed;
-    z-index: 5;
-    top: 1em;
-    left: 1em;
-    width: calc(100vw - 2 * 1em);
-    height: calc(100vh - 2 * 1em);
-    transition: .5s ease-in-out, inherit;
-    transition-property: top, left, width, height, inherit;
+[is=masked-box] ~ * {
+    position: relative;
 }
 
 /* Surfaces */
@@ -197,6 +166,10 @@ svg.surfaces {
 .surface rect {
     width: 100%;
     height: 100%;
+}
+
+.surfaces #grid, .surfaces #cross {
+    stroke-width: 1px;
 }
 
 /* Backgrounds */
@@ -242,6 +215,10 @@ svg.surfaces {
     word-spacing: .25ch;
 }
 
+h1, h2, h3, h4, p, a {
+    font-weight: initial;
+}
+
 h1 {
     font-size: 6em;
 }
@@ -284,6 +261,22 @@ a {
     color: var(--c-a0);
 }
 
+.path {
+    font-family: 'firacode', sans-serif;
+    color: var(--c-g1-c0);
+}
+
+.path a:not(:first-child)::before {
+    content: '/';
+    margin: 0 .5ch;
+    color: var(--c-g1-c0);
+}
+
+.path a:not(:first-child)::after {
+    left: 2ch;
+    max-width: calc(100% - 2ch);
+}
+
 .load::before {
     content: '';
     color: var(--c-a0);
@@ -324,6 +317,11 @@ a {
     }
 }
 
+.pre {
+    font-family: 'firacode', sans-serif;
+    white-space: pre;
+}
+
 /* Animated text */
 
 [is=anim-text] {
@@ -341,20 +339,21 @@ a {
     width: 1ch;
 }
 
+
 [data-method=load] span.animated {
     color: var(--c-a0);
 }
 
 .flip span.animated {
-    animation: flip .5s ease-in-out;
+    animation: flip .5s ease-in-out forwards;
 }
 
 @keyframes flip {
     50% {
-        transform: translateX(1em) rotateX(90deg);
+        transform: translateX(1em) skew(-10deg);
     }
     75% {
-        transform: translateX(-.2em);
+        transform: translateX(-.2em) skew(10deg);
     }
     to {
         transform: translateX(0);
@@ -376,7 +375,7 @@ a {
 }
 
 .slide span.animated {
-    animation: slide .75s ease-in-out forwards;
+    animation: slide .5s ease-in-out forwards;
 }
 
 @keyframes slide {
@@ -387,17 +386,22 @@ a {
 }
 
 .wave span.animated {
-    --ax: .125em;
-    --ay: .5em;
-    animation: wave .75s ease-in-out forwards;
+    --amplitude: .5em; 
+    animation: wave 1s ease-in-out forwards;
 }
 
 @keyframes wave {
-    25% {
-        transform: translate(calc(-1 * var(--ax)), calc(-1 * var(--ay)));
+    33% {
+        transform: translateY(calc(-1 * var(--amplitude)));
+        text-shadow: 
+            0 calc(2 * var(--amplitude)) 0 var(--c-a0),
+            0 calc(4 * var(--amplitude)) 0 var(--c-a0);
     }
-    75% {
-        transform: translate(var(--ax), var(--ay));
+    66% {
+        transform: translateY(var(--amplitude));
+        text-shadow: 
+            0 calc(-2 * var(--amplitude)) 0 var(--c-g1-c0),
+            0 calc(-4 * var(--amplitude)) 0 var(--c-g1-c0);
     }
 }
 

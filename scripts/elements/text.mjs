@@ -29,7 +29,7 @@ function getCharDuration(className, prop = "animation") {
     element.classList.add(ANIMATED_CLASS_NAME)
     parentElement.appendChild(element);
     document.body.appendChild(parentElement);
-    let time = parseFloat(getComputedStyle(element)[`${prop}Duration`]) * 1e3;
+    let time = getCSSDuration(element, prop);
     parentElement.remove();
     element.remove();
     return time;
