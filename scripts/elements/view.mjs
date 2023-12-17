@@ -3,9 +3,9 @@ const ViewClassName = "viewed",
     hideEvent = new CustomEvent("hided"),
     sizeEventType = "sized",
     sizeObserver = new ResizeObserver((entries) =>
-        entries.forEach(entry =>
+        entries.forEach(entry => {
             entry.target.dispatchEvent(new CustomEvent(sizeEventType, { detail: entry }))
-        )
+        })
     ),
     viewObserver = new IntersectionObserver((entries) => 
         entries.forEach(entry => {
@@ -31,8 +31,8 @@ export function isViewed(element) {
 
 /**
  * Callback if an element is in viewport
- * @param {Element} element             Watched element
- * @param {() => void} onViewCallback     Callback when the element is in viewport
+ * @param {Element} element                 Watched element
+ * @param {() => void} onViewCallback       Callback when the element is in viewport
  * @param {(() => void)?} onHideCallback    Callback when the element is out of viewport
  */
 export function onView(element, onViewCallback, onHideCallback) {
@@ -42,13 +42,13 @@ export function onView(element, onViewCallback, onHideCallback) {
 }
 
 /**
- * Callback when the window resize if the element is in viewport (optimized)
- * @param {Element} element     Watched element
- * @param {() => void} callback   Callback on resize
+ * Callback when the window resize
+ * @param {Element} element         Watched element
+ * @param {() => void} callback     Callback on resize
  */
-export function onResizeView(element, callback) {
+export function onResize(element, callback) {
     element.addEventListener(sizeEventType, callback);
-    onView(element, () => sizeObserver.observe(element), () => sizeObserver.unobserve(element));
+    sizeObserver.observe(element);
 }
 
 document.querySelectorAll("main > section").forEach(element => viewObserver.observe(element));

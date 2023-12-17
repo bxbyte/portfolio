@@ -55,26 +55,6 @@
             <p class="path"><a href="">root</a><a href="">directory</a><a href="">sub-directory</a></p>
             <p class="load fira">Loading...</p>
             <a class="more">link</a>
-            <p class="pre">
-                ___
-              _/\\\\
-_           _/    \\\                                     __
-\\    __   /   _ _  \\                           _       ///\__      ___
-\\\__/\\\_/__      \  \_                       _//\__   /// // \_   ////\    __
-  \ ___  \\/\\\_  _   \ \               __   _///    \_// _/  _  \_//  _ \__///
-___/  \\__/   \\\__     \\___          ///\_//  _ _ \ \     __   // \____  //
-/  __    \  /     \\\_   _//_\___    _// _ /           \___// \//   ///  \/   
-__/_______\________\__\_/________\_ /_____/_______________/________/___________
-            </p>
-            <p class="pre">
- __  __          ___    ___               __     
-/\ \/\ \        /\_ \  /\_ \             /\ \    
-\ \ \_\ \     __\//\ \ \//\ \     ___    \ \ \   
- \ \  _  \  /'__`\\ \ \  \ \ \   / __`\   \ \ \  
-  \ \ \ \ \/\  __/ \_\ \_ \_\ \_/\ \L\ \   \ \_\ 
-   \ \_\ \_\ \____\/\____\/\____\ \____/    \/\_\
-    \/_/\/_/\/____/\/____/\/____/\/___/      \/_/
-            </p>
         </section>
         <section id="surfaces">
             <svg class="surface">
@@ -118,10 +98,10 @@ __/_______\________\__\_/________\_ /_____/_______________/________/___________
         </section>
         <section id="windows" class="p-rad">
             <div is="masked-box" id="masked-img" class="gradient">
-                <svg class="surface">
+                <svg class="surface" xmlns="http://www.w3.org/2000/svg">
                     <rect width="100%" fill="url(#hash)"/>
                     <image class="bw"
-                        xlink:href="../assets/img/mountain-0.webp"
+                        href="../assets/img/mountain-0.webp"
                         alt="err"
                         width="100%" height="100%"
                         preserveAspectRatio="xMidYMin slice"/>
@@ -138,6 +118,24 @@ __/_______\________\__\_/________\_ /_____/_______________/________/___________
             </div>
             <div mask="masked-img"></div>
         </section>
+        <section>
+            <svg class="svgwave" xmlns="http://www.w3.org/2000/svg" width="301" height="50" viewBox="0 0 301 21">
+                <path id="wavepath" fill="none" d="M0,.5c30.0978,0,30.0978,20,60.1956,20S90.2948.5,120.394.5s30.1,20,60.2,20c30.1015,0,30.1015-20,60.203-20s30.1014,20,60.2029,20"></path>
+                <text text-anchor="middle">
+                    <textPath  href="#wavepath" startOffset="0%">
+                    <animate attributeName="startOffset" from="-50%" to="150%" begin="0s" dur="8s" repeatCount="indefinite"></animate>
+                    A A A A A A A A A A A A A A A A A A A A A A A
+                    </textPath>
+                    <textPath href="#wavepath" startOffset="0%">
+                    <animate attributeName="startOffset" from="-50%" to="150%" begin="-4s" dur="8s" repeatCount="indefinite"></animate>
+                    B B B B B B B B B B B B B B B B B B B B B B B
+                    </textPath>
+                </text>
+                
+                </svg>
+            <p is="ascii-text" data-ascii="clouds-0"></p>
+            <p is="ascii-text" data-ascii="cloud-0"></p>
+        </section>
     </main>
     <footer>
         <div class="links">
@@ -151,10 +149,10 @@ __/_______\________\__\_/________\_ /_____/_______________/________/___________
                 </address>
             </div>
             <div>
-                <p>Legal Notices</p>
+                <p>Website Informations</p>
                 <ul class="nav">
-                    <li><a href="./privacy.html">Privacy Policy</a></li>
                     <li><a href="./terms.html">Terms of Service</a></li>
+                    <li><a href="./privacy.html">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>

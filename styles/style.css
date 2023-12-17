@@ -55,7 +55,7 @@ main {
     margin: 0 -1em;
     max-width: calc(var(--max-width) - 4em);
     background-color: var(--c-g1);
-    outline: 1px solid var(--c-g1-c0);
+    outline: 1px solid var(--c-g1-c1);
 }
 
 /* Footer */
@@ -67,7 +67,7 @@ footer {
 }
 
 footer > div:not(.links) {
-    border-top: 1px solid var(--c-g1-c0);
+    border-top: 1px solid var(--c-g1-c1);
     padding-top: 1em;
 }
 
@@ -140,6 +140,7 @@ ul.nav {
 }
 
 [is=masked-box] > * {
+    position: absolute;
     width: 100%;
     height: 100%;
 }
@@ -317,7 +318,9 @@ a {
     }
 }
 
-.pre {
+/* Ascii art */
+
+[is=ascii-text] {
     font-family: 'firacode', sans-serif;
     white-space: pre;
 }

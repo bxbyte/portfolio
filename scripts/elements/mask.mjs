@@ -1,4 +1,4 @@
-import { onResizeView, onView } from "./view.mjs";
+import { onResize, isViewed, onView } from "./view.mjs";
 
 class MaskedDiv extends HTMLDivElement {
     refreshing = true;
@@ -10,17 +10,18 @@ class MaskedDiv extends HTMLDivElement {
     async connectedCallback() {
         this.cvs = document.createElement("canvas");
         this.ctx = this.cvs.getContext("2d");
+        let parentBox = this.parentElement.getBoundingClientRect();
+        this.cvs.width = parentBox.width;
+        this.cvs.height = parentBox.height;
 
-        onResizeView(this.parentElement, () => {
+        onResize(this.parentElement, () => {
             let parentBox = this.parentElement.getBoundingClientRect();
             this.cvs.width = parentBox.width;
             this.cvs.height = parentBox.height;
+            requestAnimationFrame(this.render.bind(this));
         })
-        
-        document.querySelectorAll(`[mask=${this.id}]`).forEach(maskEl => {
-            onView(maskEl, () => this.maskChilds.add(maskEl), () => this.maskChilds.delete(maskEl));
-            onResizeView(maskEl, this.render.bind(this));
-        });
+
+        document.querySelectorAll(`[mask=${this.id}]`).forEach(maskEl => this.maskChilds.add(maskEl));
     }
 
     /**
