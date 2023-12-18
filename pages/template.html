@@ -11,7 +11,10 @@
     <script src="../scripts/buttons.js"></script>
     <script src="../scripts/main.mjs" type="module"></script>
 
-    <!-- Surfaces related -->
+    <title>Portfolio - Template</title>
+</head>
+<body>
+    <!-- Not displayed -->
     <svg class="surfaces" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
         <defs>
             <pattern id="grid" viewBox="0 0 100 100" patternUnits="userSpaceOnUse" width="1em" height="1em">
@@ -32,10 +35,7 @@
             </pattern>
         </defs>
     </svg>
-
-    <title>Portfolio - Template</title>
-</head>
-<body>
+    
     <header>
         <nav class="right" >
             <ul class="nav">
@@ -52,7 +52,7 @@
             <h3>Third <span is="anim-text" data-method="curse">header</span><h3>
             <h4>Fourth <span is="anim-text" class="wave" data-method="next" data-delta="40">header</span></h4>
             <p>Id qui fugiat nostrud ullamco est sint non mollit quis ut. <strong>Among us</strong></p>
-            <p class="path"><a href="">root</a><a href="">directory</a><a href="">sub-directory</a></p>
+            <p class="filepath"><a href="">root</a><a href="">directory</a><a href="">sub-directory</a></p>
             <p class="load fira">Loading...</p>
             <a class="more">link</a>
         </section>
@@ -107,32 +107,28 @@
                         preserveAspectRatio="xMidYMin slice"/>
                 </svg>
             </div>
-            <div mask="masked-img">
+            <div data-mask="masked-img">
             </div>
-            <div mask="masked-img">
+            <div data-mask="masked-img">
                 <h1 class="pixel clip gradient">44203</h1>
             </div>
-            <div mask="masked-img">
+            <div data-mask="masked-img">
             </div>
-            <div mask="masked-img">
+            <div data-mask="masked-img">
             </div>
-            <div mask="masked-img"></div>
+            <div data-mask="masked-img"></div>
         </section>
-        <section>
-            <svg class="svgwave" xmlns="http://www.w3.org/2000/svg" width="301" height="50" viewBox="0 0 301 21">
+        <section id="svg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="8em" viewBox="0 0 301 21" fill="var(--c-g1-c0)">
                 <path id="wavepath" fill="none" d="M0,.5c30.0978,0,30.0978,20,60.1956,20S90.2948.5,120.394.5s30.1,20,60.2,20c30.1015,0,30.1015-20,60.203-20s30.1014,20,60.2029,20"></path>
-                <text text-anchor="middle">
-                    <textPath  href="#wavepath" startOffset="0%">
-                    <animate attributeName="startOffset" from="-50%" to="150%" begin="0s" dur="8s" repeatCount="indefinite"></animate>
-                    A A A A A A A A A A A A A A A A A A A A A A A
-                    </textPath>
-                    <textPath href="#wavepath" startOffset="0%">
-                    <animate attributeName="startOffset" from="-50%" to="150%" begin="-4s" dur="8s" repeatCount="indefinite"></animate>
-                    B B B B B B B B B B B B B B B B B B B B B B B
+                <text text-anchor="middle" style="font-size: .5em;">
+                    <textPath href="#wavepath" data-scroll-anchor="svg" data-scroll-attr="startOffset -50 150">
+                        Ipsum cillum ullamco eu veniam Lorem amet reprehenderit enim esse excepteur. Voluptate mollit ad enim ea Lorem est magna sint consequat laborum esse nostrud sint est. Sint qui adipisicing elit ea pariatur quis qui ullamco ex nisi eu officia. Ullamco esse dolor quis aliquip duis.
                     </textPath>
                 </text>
-                
-                </svg>
+            </svg>
+        </section>
+        <section id="ascii">
             <p is="ascii-text" data-ascii="clouds-0"></p>
             <p is="ascii-text" data-ascii="cloud-0"></p>
         </section>
@@ -158,7 +154,7 @@
         </div>
         <div>
             <ul class="nav right">
-                <li>© 2023 by BxByte,</li>
+                <li>© 2023 - Today by BxB,</li>
                 <li><a href="../LICENSE.txt" rel="license">All Rights Reserved.</a></li>
             </ul>
         </div>

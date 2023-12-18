@@ -1,8 +1,6 @@
-import { onResize, isViewed, onView } from "./view.mjs";
+import { onResize } from "../size.mjs";
 
 class MaskedDiv extends HTMLDivElement {
-    refreshing = true;
-    maskChilds = new Set();
 
     /**
      * Setup 
@@ -21,7 +19,7 @@ class MaskedDiv extends HTMLDivElement {
             requestAnimationFrame(this.render.bind(this));
         })
 
-        document.querySelectorAll(`[mask=${this.id}]`).forEach(maskEl => this.maskChilds.add(maskEl));
+        this.maskChilds = new Set(document.querySelectorAll(`[data-mask=${this.id}]`))
     }
 
     /**
@@ -47,7 +45,7 @@ class MaskedDiv extends HTMLDivElement {
      * Refresh mask on element
      */
     refresh() {
-        this.style.mask = `url(${this.cvs.toDataURL()})`;
+        this.style.mask = this.style.webkitMask =`url(${this.cvs.toDataURL()})`;
     }
 }
 

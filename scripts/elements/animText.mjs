@@ -1,14 +1,13 @@
-import { onView } from "./view.mjs";
-import { getCSSDuration } from "../utils.mjs";
+import { onView } from "../view.mjs";
 
 const END_CLASS_NAME = "end",
-    ANIMATED_CLASS_NAME = "animated",
-    CURSED_CHARSET = ['⬚', '$', '/', 'A', 'Z', '▒', '░', '⠻', '⛦'];
+    AnimatedClassName = "animated",
+    CursedCharset = ['⬚', '$', '/', 'A', 'Z', '▒', '░', '⠻', '⛦'];
 
 /**
- * Turn a string into a span element
+ * Convert a string into a span element
  * @param {*} text  Span content
- * @returns {HTMLSpanElement} the span element
+ * @returns {HTMLSpanElement}
  */
 function toSpanEl(text) {
     let spanEl = document.createElement("span");
@@ -17,16 +16,26 @@ function toSpanEl(text) {
 }
 
 /**
+ * Get computed CSS duration of an element
+ * @param {Element} element  Target element
+ * @param {String} prop  Name of propriety transition / animation (default)
+ * @returns {Number}
+ */
+export function getCSSDuration(element, prop = "transition") {
+    return parseFloat(getComputedStyle(element)[`${prop}Duration`]) * 1e3;
+}
+
+/**
  * Get computed CSS duration of char
- * @param {String} className    Class of targeted char style.
- * @param {String} prop         Name of propriety transition / animation (default)
+ * @param {String} className  Class of targeted char style.
+ * @param {String} prop  Name of propriety transition / animation (default)
  * @returns {Number}
  */
 function getCharDuration(className, prop = "animation") {
     let parentElement = document.createElement("span");
     parentElement.className = className;
     let element = document.createElement("span");
-    element.classList.add(ANIMATED_CLASS_NAME)
+    element.classList.add(AnimatedClassName)
     parentElement.appendChild(element);
     document.body.appendChild(parentElement);
     let time = getCSSDuration(element, prop);
@@ -83,9 +92,9 @@ class AnimatedText extends HTMLSpanElement {
 
     /**
      * Use setTimeout with this to cancel animation if needed
-     * @param {Function} callback   setTimeout callback
-     * @param {Number} timeout      setTimeout timeout
-     * @returns {Number}            setTimeout id
+     * @param {Function} callback  setTimeout callback
+     * @param {Number} timeout  setTimeout timeout
+     * @returns {Number}  setTimeout id
      */
     setTimeout(callback, timeout) {
         let id = setTimeout(callback, timeout);
@@ -95,9 +104,9 @@ class AnimatedText extends HTMLSpanElement {
 
     /**
      * Use setInterval with this to cancel animation if needed
-     * @param {Function} callback   setInterval callback
-     * @param {Number} timeout      setInterval timeout
-     * @returns {Number}            setInterval id
+     * @param {Function} callback  setInterval callback
+     * @param {Number} timeout  setInterval timeout
+     * @returns {Number}  setInterval id
      */
     setInterval(callback, timeout) {
         let id = setInterval(callback, timeout);
@@ -116,8 +125,8 @@ class AnimatedText extends HTMLSpanElement {
 
     /**
      * Wait for a moment on a element before calling back to the next one
-     * @param {(el: Element, next: (el: Element) => Promise<undefined>) => Promise<undefined>} callback   Call one a element returning the next one
-     * @param {Element} element                             First element
+     * @param {(el: Element, next: (el: Element) => Promise<undefined>) => Promise<undefined>} callback  Call one a element returning the next one
+     * @param {Element} element  First element
      * @returns {Promise<undefined>}
      */
     async next(callback, element) {
@@ -128,11 +137,11 @@ class AnimatedText extends HTMLSpanElement {
     }
 
     /**
-     * Animate by addind ANIMATED_CLASS_NAME to a char one after another
+     * Animate by addind AnimatedClassName to a char one after another
      */
     async animNext() {
         await this.next(async (charEl, next) => {
-            charEl.classList.add(ANIMATED_CLASS_NAME)
+            charEl.classList.add(AnimatedClassName)
             await this.wait(this.dataset.delta)
             await next(charEl.nextElementSibling);
         }, this.firstElementChild);
@@ -142,12 +151,12 @@ class AnimatedText extends HTMLSpanElement {
     }
 
     /**
-     * Animate by randomly choosing a char in CURSED_CHARSET
+     * Animate by randomly choosing a char in CursedCharset
      */
     async animCurse() {
         this.chars.forEach((charEl) => {
             let finalChar = charEl.innerText,
-                remainingChars = Array.from(CURSED_CHARSET),
+                remainingChars = Array.from(CursedCharset),
                 idInterval = this.setInterval(() => {
                     charEl.innerText = remainingChars.splice(~~(Math.random() * remainingChars.length), 1)[0];
                     if (remainingChars.length == 0 || Math.random() < 1 / remainingChars.length ) {
