@@ -10,7 +10,7 @@ const scrollEventType = "scrollViewport",
  * @returns {Number}
  */
 export function getScrollFactor(element) {
-    return (window.innerHeight - element.getBoundingClientRect().top) / window.innerHeight // Normalize the scroll factor
+    return (window.innerHeight - element.getBoundingClientRect().top) / window.innerHeight; // "Normalize" the scroll factor
 }
     
 /**

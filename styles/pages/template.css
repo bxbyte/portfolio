@@ -48,6 +48,7 @@ main {
 
 #windows > div {
     display: flex;
+    overflow: hidden;
 }
 
 #windows > div:nth-child(2) {
