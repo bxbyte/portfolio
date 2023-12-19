@@ -39,7 +39,7 @@ main {
 #windows {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
     height: 30em;
     gap: .5em;
     position: relative;

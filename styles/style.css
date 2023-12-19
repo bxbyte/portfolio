@@ -25,7 +25,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden;
     font-family: "roboto", sans-serif;
 }
 
@@ -59,6 +58,7 @@ main {
     padding: 2em;
     margin: 0 -1em;
     max-width: calc(var(--max-width) - 4em);
+    overflow: hidden;
     background-color: var(--c-g1);
     outline: 1px solid var(--c-g1-c1);
 }
