@@ -9,14 +9,13 @@
     background: none;
     text-decoration: none;
     font-size: inherit;
-    line-height: 1em;
     font-family: inherit;
     font-weight: inherit;
     color: var(--c-g1-c0);
 }
 
-strong {
-    font-weight: bold;
+:root {
+    overflow-x: hidden;
 }
 
 body {
@@ -26,6 +25,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: "roboto", sans-serif;
+    overflow-x: hidden;
 }
 
 header,
@@ -57,10 +57,9 @@ header a:not(.active) {
 main {
     padding: 2em;
     margin: 0 -1em;
-    max-width: calc(var(--max-width) - 4em);
-    overflow: hidden;
     background-color: var(--c-g1);
     outline: 1px solid var(--c-g1-c1);
+    overflow: hidden;
 }
 
 /* Footer */
@@ -206,6 +205,7 @@ svg.surfaces {
 .mono {
     font-family: "monoton", sans-serif;
     font-weight: 100;
+    line-height: 1em;
     word-spacing: .5ch;
 }
 
@@ -239,6 +239,10 @@ h3 {
 
 h4 {
     font-size: 1.25em;
+}
+
+strong {
+    font-weight: bold;
 }
 
 a::after {
@@ -330,6 +334,7 @@ a {
     white-space: pre;
     overflow: hidden;
     color: var(--c-g1-c1);
+    line-height: 1em;
 }
 
 /* Animated text */
